@@ -25,9 +25,17 @@ for i in range(3):
     # x = np.random.randint(1,100,n)
     # print(x)
 
-    x = (np.random.random_sample(size = 10))
+    n = int(input("How many numbers do you need ?"))
+    x = []
+    for i in range(n):
+        value = float(input())
+        x.append(value)
+
+    print(x)
+    # x = list((np.random.random_sample(size=10)))
+
     totalCtypes(x, len(x))
-    # time.sleep(7)
+    time.sleep(4)
 
     print(type(x))
 
