@@ -20,7 +20,7 @@ void array_printer(int * arr, int n){
 }
 
 
-int total(int * arr, int n){
+int total_int(int * arr, int n){
 	array_printer(arr, n);
 	int * shared_memory;
 
@@ -46,6 +46,38 @@ int total(int * arr, int n){
 
 	
 	return 1;
+
+}
+
+double total_double(double * arr, int n){
+	double * shared_memory;
+
+	int shmid;
+
+	shmid = shmget((key_t)1122, 1024, 0666|IPC_CREAT);
+
+	// printf("Key of shared memory is %d\n", shmid);
+
+	shared_memory = (double *)shmat(shmid, NULL, 0); // procces attached to shared memory segment
+
+	printf("Process attached at %p\n", shared_memory);
+
+	printf("i will now copy the arr in shared memory\n");
+
+	for(int i=0;i<n;i++){
+
+
+		shared_memory[i] = arr[i];
+		printf("index : %d has the value : %f\n",i, shared_memory[i] );
+	}
+
+	printf("the shared_memory should now be in full \n");
+
+	// array_printer(shared_memory, n);
+
+	
+	return 1;
+
 
 }
 
