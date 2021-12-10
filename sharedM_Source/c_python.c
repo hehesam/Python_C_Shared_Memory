@@ -12,6 +12,13 @@
 
 // using namespace std;
 
+// struct Shared_Segment
+// {
+// 	int size;
+// 	double * numbers;
+	
+// };
+
 void array_printer(int * arr, int n){
 	printf("this is the array in c_ptyhon file \n");
 	for(int i=0;i<n*2;i++)
@@ -84,27 +91,31 @@ double total_double(double * arr, int n){
 }
 
 double total_struct(double * arr, int n){
-	
-	double * shared_memory;
+
+	struct Shared_Segment * shared_memory;
 
 	int shmid;
 
 	shmid = shmget((key_t)1122, 1024, 0666|IPC_CREAT);
 
-	// printf("Key of shared memory is %d\n", shmid);
+	printf("Key of shared memory is %d\n", shmid);
 
-	shared_memory = (double *)shmat(shmid, NULL, 0); // procces attached to shared memory segment
+	shared_memory = shmat(shmid, NULL, 0); // procces attached to shared memory segment
 
 	printf("Process attached at %p\n", shared_memory);
 
-	printf("i will now copy the arr in shared memory\n");
+	printf("i will now copy the arr in shared memory numbers\n");
 
 	for(int i=0;i<n;i++){
 
+		// printf("value of arr is : %f\n", arr[i]);
 
-		shared_memory[i] = arr[i];
-		printf("index : %d has the value : %f\n",i, shared_memory[i] );
+		shared_memory->numbers[i] = arr[i];
+
+
+		printf("index : %d has the value : %f\n",i, shared_memory->numbers[i] );
 	}
+	shared_memory->size = n;
 
 	printf("the shared_memory should now be in full \n");
 
@@ -114,46 +125,11 @@ double total_struct(double * arr, int n){
 	return 1;
 
 }
+
 // int main(){
-
-// 	int * shared_memory;
-// 	int buff[100];
-// 	string buffs;
-
-// 	int shmid;
-
-// 	shmid = shmget((key_t)1122, 1024, 0666|IPC_CREAT);
-
-// 	printf("Key of shared memory is %d\n", shmid);
-
-// 	shared_memory = (int *)shmat(shmid, NULL, 0); // procces attached to shared memory segment
-
-// 	printf("Process attached at %p\n", shared_memory);
-
-// 	cout<<"input the string "<<endl;
-
-// 	// getline(cin, buffs);
-
-// 	for(int i=0;i<5;i++)
-// 		cin>>shared_memory[i];
-
-// 	cout<<"you have enter these numbers\n";
-
-// 	for(int i=0;i<5;i++)
-// 		cout<<shared_memory[i]<< "	";
-
-
-
-// 	// read(0, buff, 100); // get some input from user
-
-
-
-// 	// strcpy(shared_memory, buffs.c_str()); // data written to shared memory
-
-// 	// printf("You wrote: %s\n", (char *)shared_memory);
-
-// 	int a;
-// 	cout << "enter the number : \n";
-// 	cin>>a;
-
+// 	// double  arr[3];
+// 	// arr[0] = 1.01;
+// 	// arr[1] = 3.03;
+// 	// arr[2] = 2.02;
+// 	// total_struct(arr, 3);
 // }

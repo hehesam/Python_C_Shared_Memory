@@ -1,6 +1,6 @@
 struct Shared_Segment
 {
 	int size;
-	double * numbers;
+	double  numbers[100];
 	
 };
