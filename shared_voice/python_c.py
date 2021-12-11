@@ -31,8 +31,9 @@ def totalCtypes_struct(arr, n):
     return _lib.total_struct(array_type(*arr), ctypes.c_int(n))
 
 
-
-for i in range(3):
+n = int(input("How many numbers do you need ?"))
+# for i in range(3):
+while(1):
     # n = 10
     # x = np.random.randint(1,100,n)
     # print(x)
@@ -43,14 +44,14 @@ for i in range(3):
     #     value = float(input())
     #     x.append(value)
 
-    x = voice_text.speak()
+    # x = voice_text.speak()
 
-    print(x)
-    # x = list((np.random.random_sample(size=10)))
+    # print(x)
+    x = list((np.random.random_sample(size=n)))
 
     # totalCtypes(x, len(x))
     totalCtypes_struct(x, len(x))
-    time.sleep(4)
+    time.sleep(0.005)
 
     print(type(x))
 
