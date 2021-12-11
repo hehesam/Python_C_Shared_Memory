@@ -1,6 +1,6 @@
 import ctypes
 import numpy as np
-import voice_text
+# import voice_text
 import time
 
 np.random.seed(42)
