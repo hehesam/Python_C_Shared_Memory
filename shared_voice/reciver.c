@@ -60,7 +60,7 @@ void total_double(){
 
 void total_struct(){
 	int ii = 0;
-	while(ii<20){
+	while(ii<60){
 	printf("II value is %d\n", ii);
 	struct Shared_Segment * shared_memory;
 	double  flag;
@@ -71,15 +71,16 @@ void total_struct(){
 
 	shared_memory = shmat(shmid, NULL, 0); // procces attached to shared memory segment
 
-	printf("hihi\n");
+	printf("Process attached at %p\n", shared_memory);
+
 
 	if(ii==0){
 		flag = shared_memory->numbers[0];
-		printf("HIHI\n");
+		// printf("HIHI\n");
 	}
 
 	else if(flag != shared_memory->numbers[0]){
-		printf("Process attached at %p\n", shared_memory);
+		// printf("Process attached at %p\n", shared_memory);
 
 		flag = shared_memory->numbers[0];
 
