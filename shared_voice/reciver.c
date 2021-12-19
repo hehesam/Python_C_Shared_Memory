@@ -31,7 +31,9 @@ void total_double(){
 
 	shared_memory = (double *)shmat(shmid, NULL, 0); // procces attached to shared memory segment
 
-	
+	printf("Process attached at %p\n", shared_memory);
+
+
 
 	if(ii==0){
 		flag = shared_memory[0];
@@ -60,18 +62,22 @@ void total_double(){
 
 void total_struct(){
 	int ii = 0;
-	while(ii<60){
+	while(1){
 	printf("II value is %d\n", ii);
 	struct Shared_Segment * shared_memory;
 	double  flag;
 	int shmid;
 
 	shmid = shmget((key_t)1122, 1024, 0666|IPC_CREAT);
-	printf("Key of shared memory is %d\n", shmid);
+	// printf("Key of shared memory is %d\n", shmid);
 
 	shared_memory = shmat(shmid, NULL, 0); // procces attached to shared memory segment
 
-	printf("Process attached at %p\n", shared_memory);
+	// printf("Process attached at %p\n", shared_memory);
+
+	for(long unsigned int i=0;i<shared_memory->size;i++){
+		printf("%f\n",shared_memory->numbers[i]);
+			}
 
 
 	if(ii==0){
@@ -94,7 +100,7 @@ void total_struct(){
 	
 	shmdt(shared_memory);
 	ii++;
-	sleep(2);
+	sleep(0.05);
 }
 }
 
