@@ -210,7 +210,7 @@ if __name__ == '__main__':
     parser.add_argument('-f', '--file',
                         help="Read from .wav file instead of microphone")
 
-    parser.add_argument('-m', '--model', required=True, default='/home/hesam/programs/data/deepspeech-0.9.3-models.pbmm',
+    parser.add_argument('-m', '--model', default='/home/hesam/programs/data/deepspeech-0.9.3-models.pbmm',
                         help="Path to the model (protocol buffer binary file, or entire directory containing all standard-named files for model)")
     parser.add_argument('-s', '--scorer', default='/home/hesam/programs/data/deepspeech-0.9.3-models.scorer',
                         help="Path to the external scorer file.")

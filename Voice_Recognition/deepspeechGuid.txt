@@ -1,3 +1,9 @@
 python mic_vad_streaming.py -m deepspeech-0.9.3-models.pbmm -s deepspeech-0.9.3-models.scorer
 
+python3 deepSpeech1.0.py -m deepspeech-0.9.3-models.pbmm -s deepspeech-0.9.3-models.scorer
+
+python3 deepSpeech1.0.py 
+
+
+
 source bin/activate
