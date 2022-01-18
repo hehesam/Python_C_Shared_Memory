@@ -4,7 +4,7 @@ os.environ["TF_CPP_MIN_LOG_LEVEL"]= "3"
 import pathlib
 import matplotlib.pyplot as plt
 import numpy as np
-import seaborn as sns
+# import seaborn as sns
 import tensorflow as tf
 import speech_recognition as sr
 from tensorflow.keras.layers.experimental import preprocessing
@@ -27,14 +27,14 @@ np.random.seed(seed)
 data_dir = pathlib.Path('data/mini_speech_commands')
 data_dir1 = pathlib.Path('data')
 
-"""
+
 if not data_dir.exists():
   tf.keras.utils.get_file(
       'mini_speech_commands.zip',
       origin="http://storage.googleapis.com/download.tensorflow.org/data/mini_speech_commands.zip",
       extract=True,
       cache_dir='.', cache_subdir='data')
-"""
+
 commands = np.array(tf.io.gfile.listdir(str(data_dir)))
 commands = commands[commands != 'README.md']
 print('Commands:', commands)
@@ -49,9 +49,9 @@ filenames = tf.io.gfile.glob(str(data_dir) + '/*/*')
 filenames = tf.random.shuffle(filenames)
 num_samples = len(filenames)
 
-train_files = filenames[:32000]
-val_files = filenames[3200:]
-test_files = filenames[3200:]
+train_files = filenames[:7300]
+val_files = filenames[7301:]
+test_files = filenames[7301:]
 
 def decode_audio(audio_binary):
   audio, _ = tf.audio.decode_wav(audio_binary)
@@ -683,82 +683,82 @@ def wave_maker14():
         duration=finish2-start
         #print('duration14=',duration)
 
-t1=threading.Thread(target=wave_maker1)
-t2=threading.Thread(target=wave_maker2)
-t3=threading.Thread(target=wave_maker3)
-t4=threading.Thread(target=wave_maker4)
-t5=threading.Thread(target=wave_maker5)
-t6=threading.Thread(target=wave_maker6)
-t7=threading.Thread(target=wave_maker7)
-t8=threading.Thread(target=wave_maker8)
-t9=threading.Thread(target=wave_maker9)
-t10=threading.Thread(target=wave_maker10)
-t11=threading.Thread(target=wave_maker11)
-t12=threading.Thread(target=wave_maker12)
-t13=threading.Thread(target=wave_maker13)
-t14=threading.Thread(target=wave_maker14)
+def talk():
+    t1=threading.Thread(target=wave_maker1)
+    t2=threading.Thread(target=wave_maker2)
+    t3=threading.Thread(target=wave_maker3)
+    t4=threading.Thread(target=wave_maker4)
+    t5=threading.Thread(target=wave_maker5)
+    t6=threading.Thread(target=wave_maker6)
+    t7=threading.Thread(target=wave_maker7)
+    t8=threading.Thread(target=wave_maker8)
+    t9=threading.Thread(target=wave_maker9)
+    t10=threading.Thread(target=wave_maker10)
+    t11=threading.Thread(target=wave_maker11)
+    t12=threading.Thread(target=wave_maker12)
+    t13=threading.Thread(target=wave_maker13)
+    t14=threading.Thread(target=wave_maker14)
 
 
-t1.start()
-time.sleep(0.1)
-t2.start()
-time.sleep(0.1)
-t3.start()
-time.sleep(0.1)
-t4.start()
-time.sleep(0.1)
-t5.start()
-time.sleep(0.1)
-t6.start()
-time.sleep(0.1)
-t7.start()
-time.sleep(0.1)
-t8.start()
-time.sleep(0.1)
-t9.start()
-time.sleep(0.1)
-t10.start()
-time.sleep(0.1)
-t11.start()
-time.sleep(0.1)
-t12.start()
-time.sleep(0.1)
-t13.start()
-time.sleep(0.1)
-t14.start()
-time.sleep(0.1)
-recorded=['rec/1.wav','rec/2.wav','rec/3.wav','rec/4.wav','rec/5.wav',
-'rec/6.wav','rec/7.wav','rec/8.wav','rec/9.wav','rec/10.wav',
-'rec/11.wav','rec/12.wav','rec/13.wav','rec/14.wav']
-#########################################
-i=-1
-while True:
-  i=i+1
-  if i==13:
+    t1.start()
+    time.sleep(0.1)
+    t2.start()
+    time.sleep(0.1)
+    t3.start()
+    time.sleep(0.1)
+    t4.start()
+    time.sleep(0.1)
+    t5.start()
+    time.sleep(0.1)
+    t6.start()
+    time.sleep(0.1)
+    t7.start()
+    time.sleep(0.1)
+    t8.start()
+    time.sleep(0.1)
+    t9.start()
+    time.sleep(0.1)
+    t10.start()
+    time.sleep(0.1)
+    t11.start()
+    time.sleep(0.1)
+    t12.start()
+    time.sleep(0.1)
+    t13.start()
+    time.sleep(0.1)
+    t14.start()
+    time.sleep(0.1)
+    recorded=['rec/1.wav','rec/2.wav','rec/3.wav','rec/4.wav','rec/5.wav',
+    'rec/6.wav','rec/7.wav','rec/8.wav','rec/9.wav','rec/10.wav',
+    'rec/11.wav','rec/12.wav','rec/13.wav','rec/14.wav']
+    #########################################
     i=-1
-  #with plt.ion():
-  sample_file =data_dir1/recorded[0]
-  sample_ds = preprocess_dataset([str(sample_file)])
-  for spectrogram, label in sample_ds.batch(1):
-      prediction = model(spectrogram)
-      #plt.bar(commands, tf.nn.softmax(prediction[0]))
-      #plt.title('Predictions')
-      #fig=plt.figure()
-      #plt.show()
-      #plt.isinteractive()
-      #time.sleep(3)
-      #plt.close('all')
-      codes= tf.nn.softmax(prediction[0])
-      codes=np.array(codes)
-      max_value=np.max(codes)
-      #print(codes)
-      max_value_arg = np.argmax(codes)
-      #print(max_value)
-      if max_value > 0.9:
-          predicted_command=commands[max_value_arg]
-          img=cv2.imread('white.jpg')
-          cv2.putText(img, predicted_command,(300,350), cv2.FONT_HERSHEY_SIMPLEX, 7,(0,0,0), 12)
-          cv2.imshow("predicted", img)
-          cv2.waitKey(1000)
-          time.sleep(0.3)
-          cv2.destroyAllWindows()
+    while True:
+      i=i+1
+      if i==13:
+        i=-1
+      #with plt.ion():
+      sample_file =data_dir1/recorded[0]
+      sample_ds = preprocess_dataset([str(sample_file)])
+      for spectrogram, label in sample_ds.batch(1):
+          prediction = model(spectrogram)
+
+          codes= tf.nn.softmax(prediction[0])
+          codes=np.array(codes)
+          max_value=np.max(codes)
+          #print(codes)
+          max_value_arg = np.argmax(codes)
+          #print(max_value)
+          if max_value > 0.9:
+              predicted_command=commands[max_value_arg]
+
+              print(predicted_command)
+              print(type(predicted_command))
+              return predicted_command
+
+
+
+
+
+while 1:
+    print(talk())
