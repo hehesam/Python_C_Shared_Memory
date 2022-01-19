@@ -100,7 +100,7 @@ void total_struct(){
 	
 	shmdt(shared_memory);
 	ii++;
-	sleep(0.05);
+	sleep(1);
 }
 }
 
@@ -131,7 +131,13 @@ void total_string(){
 int main(){
 
 	// total_double();
-	// total_struct();
-	total_string();
+	int num ;
+	printf("shared_string 0\t shared 1-10 1");
+	scanf("%d", &num);
+	if (num)
+		total_struct();
+
+	else 
+		total_string();
 
 }

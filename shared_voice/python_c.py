@@ -51,13 +51,39 @@ def totalCtypes_string(text):
 
 def text_to_shared(wordList: str):
 
-    totalCtypes_string(wordList)
 
 
-    # x = wordList.split(" ")
+    x = wordList.split(" ")
 
-    # if x[0] == 'number':
-    #     x.pop(0)
+    if x[0] == 'number' or x[0] == "numbers":
+        x.pop(0)
+        numbers = {  "one":  1,
+                    "two":   2,
+                    "three": 3,
+                    "four":  4,
+                    "five":  5,
+                    "six":   6,
+                    "seven": 7,
+                    "eight": 8,
+                    "nine":  9,
+                    "ten":  10
+                    }
+
+        arr = []
+        for num in x:
+            if num in numbers:
+                arr.append(numbers[num])
+
+    
+
+        totalCtypes_struct(arr, len(arr))
+
+
+
+    else :
+        totalCtypes_string(wordList)
+
+    
 
 
     # print(x)
@@ -67,7 +93,7 @@ def text_to_shared(wordList: str):
 
     # totalCtypes_struct(x, len(x))
 
-    time.sleep(4)
+    # time.sleep(4)
 
     # print(type(x))
 
