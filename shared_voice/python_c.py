@@ -1,6 +1,6 @@
 import ctypes
 import numpy as np
-import voice_text
+# import voice_text
 import time
 
 np.random.seed(42)
@@ -32,27 +32,43 @@ def totalCtypes_struct(arr, n):
 
 
 
-for i in range(3):
-    # n = 10
-    # x = np.random.randint(1,100,n)
+def totalCtypes_string(text):
+
+    #convert str to bytes
+    text = bytes(text, 'utf-8')
+
+    _lib = ctypes.CDLL('./sample.so')
+    _lib.total_string.argtypes = [ctypes.c_char_p]
+    # name_type = ctypes.c_char * n
+    # return _lib.myName(name_type(*name), ctypes.c_int(n))
+    print()
+
+    # print(type(name))
+
+    return _lib.total_string(text)    
+
+
+
+def text_to_shared(wordList: str):
+
+    totalCtypes_string(wordList)
+
+
+    # x = wordList.split(" ")
+
+    # if x[0] == 'number':
+    #     x.pop(0)
+
+
     # print(x)
-
-    # n = int(input("How many numbers do you need ?"))
-    # x = []
-    # for i in range(n):
-    #     value = float(input())
-    #     x.append(value)
-
-    x = voice_text.speak()
-
-    print(x)
     # x = list((np.random.random_sample(size=10)))
 
     # totalCtypes(x, len(x))
-    totalCtypes_struct(x, len(x))
+
+    # totalCtypes_struct(x, len(x))
+
     time.sleep(4)
 
-    print(type(x))
+    # print(type(x))
 
-# print(totalCtypes(x,n))
  

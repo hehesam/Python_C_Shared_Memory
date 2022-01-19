@@ -104,9 +104,34 @@ void total_struct(){
 }
 }
 
+void total_string(){
+
+	while (1){
+
+	char * shared_memory;
+	int shmid;
+
+	shmid = shmget((key_t)1122, 1024, 0666|IPC_CREAT);
+	// printf("Key of shared memory is %d\n", shmid);
+
+	shared_memory = shmat(shmid, NULL, 0); // procces attached to shared memory segment
+
+	printf("text in reciver file is  : %s\n", shared_memory);
+	sleep(1);
+	shmdt(shared_memory);
+
+
+}
+
+
+
+
+}
+
 int main(){
 
 	// total_double();
-	total_struct();
+	// total_struct();
+	total_string();
 
 }

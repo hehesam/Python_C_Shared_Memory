@@ -29,7 +29,8 @@ def totalCtypes(arr, n):
 
 def sayMyName(name):
 
-    # print(name)
+    name = bytes(name, 'utf-8')
+
     _lib = ctypes.CDLL('./sample.so')
     _lib.myName.argtypes = [ctypes.c_char_p]
     # name_type = ctypes.c_char * n
@@ -55,10 +56,13 @@ x = np.random.random((n,)).tolist()
 
 # print(x)
 # print(totalCtypes(x,n))
-name = b'Hesam'
+
+name = 'Hesam'
+# name = bytes(name, 'utf-8')
+print(type(name))
 
 
-print(sayMyName(name))
+sayMyName(name)
 
 
 # print(our_function([1,2,-3,4,-5,6]))

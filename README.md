@@ -12,3 +12,7 @@ mudual need to run until now :
 ctypes
 speech_recognition
 pyAudio
+
+making shared library :
+gcc -fPIC -c file.c
+gcc -shared file.o -o sample.so
