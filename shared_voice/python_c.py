@@ -57,7 +57,7 @@ def text_to_shared(wordList: str):
 
     if x[0] == 'number' or x[0] == "numbers":
         x.pop(0)
-        numbers = {  "one":  1,
+        numbers = {  "one":   1,
                     "two":   2,
                     "three": 3,
                     "four":  4,
@@ -74,9 +74,8 @@ def text_to_shared(wordList: str):
             if num in numbers:
                 arr.append(numbers[num])
 
-    
 
-        totalCtypes_struct(arr, len(arr))
+        totalCtypes_struct(arr, len(x))
 
 
 
