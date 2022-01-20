@@ -7,3 +7,15 @@ python3 deepSpeech1.0.py
 
 
 source bin/activate
+
+
+
+
+could not find a version that satisfies the requirement deepspeech 
+
+making virenv on rasberry pi:
+
+	sudo pip3 insall virtualenv
+	virtualenv -p python3 $HOME/tmp/deepspeech-venv/
+	source /tmp/deepspeech-venv/bin/activate
+	pip3 install deepspeech
